@@ -1,9 +1,11 @@
 package com.zackoji.fragmentviewpagertest;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +44,23 @@ public class MainActivity extends FragmentActivity {
                 pager.setCurrentItem(pager.getCurrentItem() - 1);
             }
         });
+
+        Button btn_request = (Button)findViewById(R.id.btn_request);
+        btn_request.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Fragment fragment = getActiveFragment(pager, 2);
+                ThreeFragment threeFragment = (ThreeFragment)fragment;
+                if(threeFragment != null) {
+                    String message = threeFragment.getMyText();
+                    Log.i("Check", message);
+                }
+            }
+        });
+    }
+
+    public Fragment getActiveFragment(ViewPager container, int position) {
+        String name = "android:switcher:" + container.getId() + ":" + position;
+        return getSupportFragmentManager().findFragmentByTag(name);
     }
 
     @Override

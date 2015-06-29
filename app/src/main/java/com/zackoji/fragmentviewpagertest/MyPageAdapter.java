@@ -29,9 +29,9 @@ public class MyPageAdapter extends FragmentPagerAdapter {
      * */
     @Override
     public Fragment getItem(int position) {
-        if (position == 0) return new OneFragment();
-        else if (position == 1) return new TwoFragment();
-        else if (position == 2) return new ThreeFragment();
+        if (position == 0) return OneFragment.newInstance();
+        else if (position == 1) return TwoFragment.newInstance();
+        else if (position == 2) return ThreeFragment.newInstance();
         return null;
     }
 }
