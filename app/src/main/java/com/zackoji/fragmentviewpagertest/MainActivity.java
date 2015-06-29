@@ -6,10 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends FragmentActivity {
 
     ViewPager pager;
+    MyPageAdapter adapter;
+    Button btn_next;
+    Button btn_prev;
 
 
     @Override
@@ -18,8 +23,25 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
         pager = (ViewPager) findViewById(R.id.pager);
-        MyPageAdapter adapter = new MyPageAdapter(getSupportFragmentManager());
+        adapter = new MyPageAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
+
+        btn_next = (Button) findViewById(R.id.btn_next);
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pager.setCurrentItem(pager.getCurrentItem() + 1);
+
+            }
+        });
+
+        btn_prev = (Button) findViewById(R.id.btn_prev);
+        btn_prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pager.setCurrentItem(pager.getCurrentItem() - 1);
+            }
+        });
     }
 
     @Override
@@ -44,3 +66,4 @@ public class MainActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+;
